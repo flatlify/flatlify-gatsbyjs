@@ -3,7 +3,6 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
-import Grid from "@material-ui/core/Grid"
 import css from "./show.module.css"
 import { Episode } from "../components/episodeCard/episodeCard"
 
