@@ -1,0 +1,15 @@
+.mainFeaturedPost {
+  position: relative;
+  background: #424242; /*heme.palette.grey[800];*/
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+.mainFeaturedPostContent {
+  padding: 1em;
+}
+
+.coverImg {
+  width: 100%;
+  padding: 1em;
+}

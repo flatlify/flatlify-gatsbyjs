@@ -1,10 +1,22 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
+    title: `Shows`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
   },
   plugins: [
+    //This plugin exists only once but can consume an array of endpoints
+    {
+      resolve: "gatsby-source-rest-api",
+      options: {
+        endpoints: [
+          "http://localhost:3020/content/cast",
+          "http://localhost:3020/content/episode",
+          "http://localhost:3020/content/season",
+          "http://localhost:3020/content/show",
+        ],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

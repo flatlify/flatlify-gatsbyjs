@@ -1,0 +1,41 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  padding: 1.5rem 1rem;
+  /* flex-direction: row; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  background: #fff;
+  margin-bottom: 1.45rem;
+  display: flex;
+}
+.link {
+  color: #000;
+  text-decoration: none;
+  font-size: 0.8em;
+}
+
+.h1 {
+  margin: 0;
+  display: inline-block;
+}
+
+.searchIcon {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  min-width: 45px;
+  min-height: 45px;
+  background: #fff;
+  border: none;
+  cursor: pointer;
+}
+.searchIcon:hover {
+  background: #eee;
+  border-radius: 50px;
+}
