@@ -5,9 +5,9 @@ import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
 import Grid from "@material-ui/core/Grid"
 import css from "./show.module.css"
+import { Episode } from "../components/episodeCard/episodeCard"
 
 const Show = props => {
-  console.log("yes", props, props.pageContext)
   const {
     title,
     subhead,
@@ -16,15 +16,11 @@ const Show = props => {
     cover: { src: imgSrc },
   } = props.pageContext
 
-  const episodes = props.data.allRestApiContentSeason.edges[0].node.data
+  const episodeIds = props.data.allRestApiContentSeason.edges[0].node.data
     .filter(season => seasonIds.includes(season.id))
     .map(season => [...season.episodes])
     .flat(1)
-
-  // console.log(
-  //   "episodes",
-  //   props.data.allRestApiContentEpisode.edges[0].node.data
-  // )
+  const episodes = props.data.allRestApiContentEpisode.edges[0].node.data
   return (
     <Layout>
       <Paper className={css.mainFeaturedPost}>
@@ -37,15 +33,18 @@ const Show = props => {
             {subhead}
           </Typography>
           <div className={css.episodes}>
-            {episodes.map(episode => (
-              <Link
-                to={`/episodes/${episode}`}
-                key={episode}
-                className={css.episodeLink}
-              >
-                {/* <Show show={episode} /> */}
-              </Link>
-            ))}
+            {episodeIds.map(episodeId => {
+              const episode = episodes.find(episode => episode.id === episodeId)
+              return (
+                <Link
+                  to={`/episode/${episodeId}`}
+                  key={episodeId}
+                  className={css.episodeLink}
+                >
+                  <Episode title={episode.title} imgSrc={episode.cover.src} />
+                </Link>
+              )
+            })}
           </div>
           <Typography
             color="inherit"
@@ -68,6 +67,7 @@ export const query = graphql`
       edges {
         node {
           data {
+            cast
             episodes
             id
           }

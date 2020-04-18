@@ -1,7 +1,10 @@
 .card {
-  max-width: 280px;
+  max-width: 270px;
   margin: 0.5em;
-  height: 400px;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .media {
   height: 140px;

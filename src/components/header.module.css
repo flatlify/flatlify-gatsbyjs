@@ -3,7 +3,6 @@
   width: 100%;
   max-width: 960px;
   padding: 1.5rem 1rem;
-  /* flex-direction: row; */
   display: flex;
   justify-content: space-between;
 }

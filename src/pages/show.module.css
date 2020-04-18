@@ -1,6 +1,6 @@
 .mainFeaturedPost {
   position: relative;
-  background: #424242; /*heme.palette.grey[800];*/
+  background: #424242;
   color: #fff;
   margin-bottom: 1em;
 }
@@ -12,4 +12,13 @@
 .coverImg {
   width: 100%;
   padding: 1em;
+}
+
+.episodeLink {
+  text-decoration: none;
+}
+.episodes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }

@@ -25,17 +25,38 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allRestApiContentEpisode {
+        edges {
+          node {
+            data {
+              cover {
+                src
+              }
+              id
+              description
+              episodeNumber
+              title
+            }
+          }
+        }
+      }
     }
   `)
   result.data.allRestApiContentShow.edges[0].node.data.forEach(show => {
-    // console.log(`node.data.id`, "\n")
     createPage({
       path: `/show/${show.id}`,
       component: path.resolve(`./src/pages/show.js`),
       context: {
-        // Data passed to context is available
-        // in page queries as GraphQL variables.
         ...show,
+      },
+    })
+  })
+  result.data.allRestApiContentEpisode.edges[0].node.data.forEach(episode => {
+    createPage({
+      path: `/episode/${episode.id}`,
+      component: path.resolve(`./src/pages/episode.js`),
+      context: {
+        ...episode,
       },
     })
   })

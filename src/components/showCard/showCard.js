@@ -9,18 +9,6 @@ import Typography from "@material-ui/core/Typography"
 
 import css from "./showCard.module.css"
 
-// cover {
-//   filename
-//   mimetype
-//   relativeSrc
-//   size
-//   src
-// }
-// description
-// seasons
-// subhead
-// title
-
 export const Show = props => {
   const { show } = props
   return (
@@ -40,7 +28,7 @@ export const Show = props => {
             color="textSecondary"
             component="p"
             dangerouslySetInnerHTML={{
-              __html: `${show.description.slice(0, 100)}...`,
+              __html: `${show.description.slice(0, 80)}...`,
             }}
           ></Typography>
         </CardContent>
