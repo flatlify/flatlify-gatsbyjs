@@ -19,9 +19,7 @@ const IndexPage = props => {
           <Typography component="h1" variant="h3" color="inherit" gutterBottom>
             {title}
           </Typography>
-          <Typography component="h3" variant="h4" color="inherit" gutterBottom>
-            {episodeNumber}
-          </Typography>
+
           <Typography
             color="inherit"
             paragraph

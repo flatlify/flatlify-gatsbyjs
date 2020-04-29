@@ -16,6 +16,7 @@
 
 .episodeLink {
   text-decoration: none;
+  display: flex;
 }
 .episodes {
   display: flex;

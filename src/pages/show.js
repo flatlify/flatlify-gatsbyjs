@@ -40,7 +40,7 @@ const Show = props => {
                   key={episodeId}
                   className={css.episodeLink}
                 >
-                  <Episode title={episode.title} imgSrc={episode.cover.src} />
+                  <Episode title={episode.title} imgSrc={episode.cover?.src} />
                 </Link>
               )
             })}
