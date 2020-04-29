@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import { Show } from "../components/showCard/showCard"
+import { ShowCard } from "../components/showCard/showCard"
 import { graphql, Link } from "gatsby"
 
 import css from "./index.module.css"
@@ -14,7 +14,7 @@ const IndexPage = props => {
       <div className={css.shows}>
         {shows.map(show => (
           <Link to={`/show/${show.id}`} key={show.title} className={css.link}>
-            <Show show={show} />
+            <ShowCard show={show} />
           </Link>
         ))}
       </div>

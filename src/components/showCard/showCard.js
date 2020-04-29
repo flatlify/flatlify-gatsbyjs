@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography"
 
 import css from "./showCard.module.css"
 
-export const Show = props => {
+export const ShowCard = props => {
   const { show } = props
   return (
     <Card className={css.card}>
