@@ -1,0 +1,9 @@
+{
+  "type": "Cast",
+  "fields": [
+    { "fieldType": "TextInput", "title": "Full name", "isRequired": true, "_gridDisplay_": true },
+    { "fieldType": "RichTextInput", "title": "Bio" },
+    { "fieldType": "ImageInput", "title": "Photo", "accept": "image/*", "multiple": true }
+  ],
+  "id": 2
+}
