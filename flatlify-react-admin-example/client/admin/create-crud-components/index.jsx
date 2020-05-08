@@ -67,13 +67,15 @@ const createCRUDComponents = contentTypeSettings => {
     );
   };
 
-  const ContentTypeCreate = props => (
-    <Create title="Create a ContentType" {...props}>
-      <SimpleForm>
-        <Fields />
-      </SimpleForm>
-    </Create>
-  );
+  const ContentTypeCreate = props => {
+    return (
+      <Create title="Create a ContentType" {...props}>
+        <SimpleForm redirect="list">
+          <Fields />
+        </SimpleForm>
+      </Create>
+    );
+  };
 
   const ContentTypeEdit = props => {
     return (
