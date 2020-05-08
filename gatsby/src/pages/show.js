@@ -41,6 +41,9 @@ const Show = props => {
           <div className={css.episodes}>
             {episodeIds.map(episodeId => {
               const episode = episodes.find(episode => episode.id === episodeId)
+              if (!episode) {
+                return null
+              }
               const relativeSrc = media.find(mediaItem => {
                 return episode.cover === mediaItem.id
               })?.relativeSrc
