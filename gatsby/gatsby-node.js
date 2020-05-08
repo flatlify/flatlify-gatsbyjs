@@ -19,9 +19,7 @@ exports.createPages = async ({ graphql, actions }) => {
               description
               seasons
               id
-              cover {
-                src
-              }
+              cover
             }
           }
         }
@@ -30,9 +28,7 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             data {
-              cover {
-                src
-              }
+              cover
               id
               description
               episodeNumber
@@ -41,23 +37,44 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      allRestApiContentMedia {
+        edges {
+          node {
+            data {
+              filename
+              id
+              mimetype
+              relativeSrc
+              size
+            }
+          }
+        }
+      }
     }
   `)
   result.data.allRestApiContentShow.edges[0].node.data.forEach(show => {
+    const imgSrc = result.data.allRestApiContentMedia.edges[0].node.data.find(
+      media => media.id === show.cover
+    )?.relativeSrc
     createPage({
       path: `/show/${show.id}`,
       component: path.resolve(`./src/pages/show.js`),
       context: {
         ...show,
+        imgSrc,
       },
     })
   })
   result.data.allRestApiContentEpisode.edges[0].node.data.forEach(episode => {
+    const imgSrc = result.data.allRestApiContentMedia.edges[0].node.data.find(
+      media => media.id === episode.cover
+    )?.relativeSrc
     createPage({
       path: `/episode/${episode.id}`,
       component: path.resolve(`./src/pages/episode.js`),
       context: {
         ...episode,
+        imgSrc,
       },
     })
   })

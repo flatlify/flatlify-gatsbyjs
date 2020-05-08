@@ -1,8 +1,12 @@
+require("dotenv").config({
+  path: `.env`,
+})
 module.exports = {
   siteMetadata: {
     title: `Shows`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
     author: `@gatsbyjs`,
+    apiUrl: process.env.API_URL,
   },
   plugins: [
     //This plugin exists only once but can consume an array of endpoints
@@ -14,10 +18,11 @@ module.exports = {
           "http://localhost:3020/content/episode",
           "http://localhost:3020/content/season",
           "http://localhost:3020/content/show",
+          "http://localhost:3020/content/media",
         ],
       },
     },
-    `gatsby-plugin-react-helmet`, 
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

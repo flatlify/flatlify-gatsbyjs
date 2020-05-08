@@ -4,7 +4,7 @@ import Layout from "../components/layout"
 import Paper from "@material-ui/core/Paper"
 import Typography from "@material-ui/core/Typography"
 import css from "./show.module.css"
-import { Episode } from "../components/episodeCard/episodeCard"
+import { EpisodeCard } from "../components/episodeCard/episodeCard"
 
 const Show = props => {
   const {
@@ -12,18 +12,25 @@ const Show = props => {
     subhead,
     description,
     seasons: seasonIds,
-    cover: { src: imgSrc },
+    imgSrc,
   } = props.pageContext
+  const { apiUrl } = props.data.site.siteMetadata
+  console.log(props)
 
   const episodeIds = props.data.allRestApiContentSeason.edges[0].node.data
     .filter(season => seasonIds.includes(season.id))
     .map(season => [...season.episodes])
     .flat(1)
   const episodes = props.data.allRestApiContentEpisode.edges[0].node.data
+  const media = props.data.allRestApiContentMedia.edges[0].node.data
   return (
     <Layout>
       <Paper className={css.mainFeaturedPost}>
-        <img src={imgSrc} className={css.coverImg} alt="preview"></img>
+        <img
+          src={`${apiUrl}${imgSrc}`}
+          className={css.coverImg}
+          alt="preview"
+        ></img>
         <div className={css.mainFeaturedPostContent}>
           <Typography component="h1" variant="h3" color="inherit" gutterBottom>
             {title}
@@ -34,13 +41,17 @@ const Show = props => {
           <div className={css.episodes}>
             {episodeIds.map(episodeId => {
               const episode = episodes.find(episode => episode.id === episodeId)
+              const relativeSrc = media.find(mediaItem => {
+                return episode.cover === mediaItem.id
+              })?.relativeSrc
+              const src = `${apiUrl}${relativeSrc}`
               return (
                 <Link
                   to={`/episode/${episodeId}`}
                   key={episodeId}
                   className={css.episodeLink}
                 >
-                  <Episode title={episode.title} imgSrc={episode.cover?.src} />
+                  <EpisodeCard title={episode.title} imgSrc={src} />
                 </Link>
               )
             })}
@@ -73,17 +84,33 @@ export const query = graphql`
         }
       }
     }
+    allRestApiContentMedia {
+      edges {
+        node {
+          data {
+            filename
+            id
+            mimetype
+            relativeSrc
+            size
+          }
+        }
+      }
+    }
     allRestApiContentEpisode {
       edges {
         node {
           data {
-            cover {
-              src
-            }
+            cover
             id
             title
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        apiUrl
       }
     }
   }

@@ -10,15 +10,11 @@ import Typography from "@material-ui/core/Typography"
 import css from "./showCard.module.css"
 
 export const ShowCard = props => {
-  const { show } = props
+  const { show, imgSrc } = props
   return (
     <Card className={css.card}>
       <CardActionArea>
-        <CardMedia
-          className={css.media}
-          image={show.cover.src}
-          title={show.title}
-        />
+        <CardMedia className={css.media} image={imgSrc} title={show.title} />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {show.title}

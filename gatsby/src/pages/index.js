@@ -8,15 +8,23 @@ import css from "./index.module.css"
 
 const IndexPage = props => {
   const shows = props.data.allRestApiContentShow.edges[0].node.data
+  const media = props.data.allRestApiContentMedia.edges[0].node.data
+  const { apiUrl } = props.data.site.siteMetadata
 
   return (
     <Layout>
       <div className={css.shows}>
-        {shows.map(show => (
-          <Link to={`/show/${show.id}`} key={show.title} className={css.link}>
-            <ShowCard show={show} />
-          </Link>
-        ))}
+        {shows.map(show => {
+          const relativeSrc = media.find(mediaItem => {
+            return show.cover === mediaItem.id
+          })?.relativeSrc
+          const src = `${apiUrl}${relativeSrc}`
+          return (
+            <Link to={`/show/${show.id}`} key={show.title} className={css.link}>
+              <ShowCard show={show} imgSrc={src} />
+            </Link>
+          )
+        })}
       </div>
     </Layout>
   )
@@ -24,17 +32,29 @@ const IndexPage = props => {
 
 export const query = graphql`
   query MyQuery {
+    site {
+      siteMetadata {
+        apiUrl
+      }
+    }
+    allRestApiContentMedia {
+      edges {
+        node {
+          data {
+            filename
+            id
+            mimetype
+            relativeSrc
+            size
+          }
+        }
+      }
+    }
     allRestApiContentShow {
       edges {
         node {
           data {
-            cover {
-              filename
-              mimetype
-              relativeSrc
-              size
-              src
-            }
+            cover
             description
             id
             seasons

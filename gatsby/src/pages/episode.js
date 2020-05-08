@@ -5,12 +5,9 @@ import Typography from "@material-ui/core/Typography"
 import css from "./episode.module.css"
 
 const IndexPage = props => {
-  const {
-    episodeNumber,
-    title,
-    description,
-    cover: { src: imgSrc },
-  } = props.pageContext
+  const { episodeNumber, title, description, cover } = props.pageContext
+  const { apiUrl } = props.data.site.siteMetadata
+  const imgSrc = `${apiUrl}${props.pathContext.imgSrc}`
   return (
     <Layout>
       <Paper className={css.mainFeaturedPost}>
@@ -32,5 +29,13 @@ const IndexPage = props => {
     </Layout>
   )
 }
-
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        apiUrl
+      }
+    }
+  }
+`
 export default IndexPage
