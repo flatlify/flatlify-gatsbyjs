@@ -2,6 +2,8 @@
 
 # How to start:
 
+_warning:_ you need at least node v10
+
 - install gatsby & flatlify dependencies
 
   `cd ./gatsby && npm i && cd ../flatlify-react-admin-example && npm i && cd ..`

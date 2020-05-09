@@ -53,9 +53,10 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
   result.data.allRestApiContentShow.edges[0].node.data.forEach(show => {
-    const imgSrc = result.data.allRestApiContentMedia.edges[0].node.data.find(
+    const img = result.data.allRestApiContentMedia.edges[0].node.data.find(
       media => media.id === show.cover
-    )?.relativeSrc
+    )
+    const imgSrc = img ? img.relativeSrc : null
     createPage({
       path: `/show/${show.id}`,
       component: path.resolve(`./src/pages/show.js`),
@@ -66,9 +67,10 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
   result.data.allRestApiContentEpisode.edges[0].node.data.forEach(episode => {
-    const imgSrc = result.data.allRestApiContentMedia.edges[0].node.data.find(
+    const img = result.data.allRestApiContentMedia.edges[0].node.data.find(
       media => media.id === episode.cover
-    )?.relativeSrc
+    )
+    const imgSrc = img ? img.relativeSrc : null
     createPage({
       path: `/episode/${episode.id}`,
       component: path.resolve(`./src/pages/episode.js`),
