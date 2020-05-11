@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "bootstrap": "cd ./gatsby && npm i && cd ../flatlify-react-admin-example && npm i && cd ..",
     "dev": "(cd gatsby && npm run dev) & (cd flatlify-react-admin-example && npm run dev) ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
